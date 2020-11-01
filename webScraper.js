@@ -16,27 +16,23 @@ async function getPropertyDetails(propertyURL) {
 
             const html = response.data;
             const $ = cheerio.load(html);
+            // console.log($);
             const titleContainer = $('.marginedIn > div ');
 
+
             titleContainer.each(function () {
-                title = returnData($(this).find('.titleContainer > h1').text());
-                price = returnData($(this).find('.titleContainer > h2 > span').text());
-                address = returnData($(this).find('.address').text());
 
+                title = returnData($(this).find('.titleContainer > h1').text(), ['{NA}']);
+                price = returnData($(this).find('.titleContainer > h2 > span').text(), ['R', ' ']);
+                address = returnData($(this).find('.address').text(), ['Address:']);
 
-
-
-                console.log(title);
-                console.log(price);
-                console.log(address);
-                console.log(beds);
-                console.log(bath);
-
-
+                if (title !== undefined) {
+                    console.log('Title: ' + title);
+                    console.log('Price: ' + price);
+                    console.log('Address: ' + address);
+                }
 
             });
-
-
 
         })
         .catch(console.error);
@@ -47,11 +43,16 @@ async function getPropertyDetails(propertyURL) {
 
 }
 
-function returnData(tagIn) {
-    if (tagIn !== '') {
-        return tagIn;
-    }
+function returnData(tagIn, removeStrings) {
+    if (tagIn !== '' && tagIn !== undefined) {
 
+        removeStrings.forEach(element => {
+            tagIn = tagIn.replace(element, '');
+        });
+
+        return tagIn;
+
+    }
 
 }
 
@@ -87,7 +88,9 @@ const allProperties = [];
 
 //const resultsFromMainPage = getPropertyPage('https://www.privateproperty.co.za/', 'for-sale/gauteng/east-rand/alberton/meyersdal/787?page=', 2);
 
-getPropertyDetails('https://www.privateproperty.co.za/for-sale/gauteng/east-rand/alberton/meyersdal/rose-garden/kingfisher-crescent-26/T2981902');
+console.log('Starting to run program...');
+
+getPropertyDetails('https://www.privateproperty.co.za/for-sale/gauteng/east-rand/alberton/meyersdal/00-stellenzicht/00-kingfisher-crescent/T2692661');
 
 
 
