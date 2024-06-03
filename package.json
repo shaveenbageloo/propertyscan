@@ -1,20 +1,14 @@
 {
-  "name": "propertyScan",
-  "version": "1.0.0",
-  "description": "",
+  "name": "propertyscan",
+  "version": "2.0.0",
+  "description": "2024 Version of the PropertyScanning App",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Shaveen Bageloo",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.0",
-    "cheerio": "^1.0.0-rc.3",
-    "node-html-parser": "^1.4.5",
-    "parse5": "^6.0.1",
-    "puppeteer": "^5.4.1",
-    "xpath": "0.0.32"
+    "express": "^4.19.2"
   }
 }
